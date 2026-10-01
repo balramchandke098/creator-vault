@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Find music, sound effects, stock footage, photos, fonts, templates and AI tools, each linked to its official source.">
+<title>CreatorVault — Find your next creative asset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#eceef6;--surface:#fff;--ink:#151733;--muted:#5b5f7e;--line:#d9dcec;--accent:#5b3df5;--accent-ink:#fff;--warm:#ff8a3d;--soft:#e4e0ff;
+--display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Figtree','Segoe UI',system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121327;--surface:#1c1e3a;--ink:#eef0ff;--muted:#a0a5cc;--line:#2e3160;--accent:#8f7aff;--accent-ink:#121327;--soft:#2a2670}}
+:root[data-theme="dark"]{--bg:#121327;--surface:#1c1e3a;--ink:#eef0ff;--muted:#a0a5cc;--line:#2e3160;--accent:#8f7aff;--accent-ink:#121327;--soft:#2a2670}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font:800 1.25rem var(--display);letter-spacing:-.02em}
+.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:.95rem}
+.nav{display:flex;gap:6px;margin-left:12px}
+.nav a{padding:8px 14px;border-radius:99px;color:var(--muted);font-weight:500}
+.nav a:hover{background:var(--soft);color:var(--ink)}
+.header-actions{margin-left:auto;display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:99px;font:600 .95rem var(--body);border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-secondary{border-color:var(--line);background:var(--surface)}
+.btn-secondary:hover{border-color:var(--ink)}
+
+/* hero */
+.hero{padding:72px 0 48px}
+.hero-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.pill-note{display:inline-flex;align-items:center;gap:10px;padding:6px 14px;border:1px solid var(--line);background:var(--surface);border-radius:99px;font-size:.85rem;color:var(--muted);font-weight:500}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--warm);box-shadow:0 0 0 0 var(--warm);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font:800 clamp(2.4rem,5.6vw,4.4rem)/1 var(--display);letter-spacing:-.035em;margin:20px 0 18px}
+h1 span{color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:52ch;margin:0 0 28px}
+.search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:8px 8px 8px 18px;max-width:560px;box-shadow:0 12px 32px -18px rgba(30,20,120,.5)}
+.search:focus-within{border-color:var(--accent)}
+.search input{flex:1;min-width:0;border:0;background:none;font:500 1.05rem var(--body);color:var(--ink);padding:10px 0;outline:0}
+.search input::placeholder{color:var(--muted)}
+.trust{margin-top:18px;color:var(--muted);font-size:.9rem}
+.trust b{color:var(--ink)}
+
+/* dial */
+.dial{position:relative;width:100%;max-width:400px;aspect-ratio:1;margin:0 auto}
+.dial svg{width:100%;height:100%;overflow:visible}
+.ring{fill:none;stroke:var(--line);stroke-width:1.5}
+.tick{stroke:var(--muted);stroke-width:1.2;opacity:.5}
+.node{fill:var(--surface);stroke:var(--line);stroke-width:2;transition:fill .3s,stroke .3s,r .3s}
+.node.on{fill:var(--warm);stroke:var(--warm)}
+.needle{transform-origin:200px 200px;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.hub{fill:var(--ink)}
+.hub-text{fill:var(--bg);font:800 22px var(--display);text-anchor:middle;dominant-baseline:central}
+.dial-label{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:6px 16px;border-radius:99px;font:600 .9rem var(--body);white-space:nowrap}
+
+/* sections */
+.section{padding:40px 0}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+h2{font:800 clamp(1.7rem,3.4vw,2.4rem)/1.1 var(--display);letter-spacing:-.025em;margin:0}
+.sub{color:var(--muted);margin:6px 0 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:8px 16px;font:600 .9rem var(--body);cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip small{opacity:.6;margin-left:6px;font-weight:500}
+
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.asset{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;transition:border-color .2s,transform .2s}
+.asset:hover{border-color:var(--accent);transform:translateY(-3px)}
+.asset-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.glyph{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font:800 1.15rem var(--display);color:#fff;flex:none}
+.asset h3{font:700 1.1rem var(--display);margin:0;letter-spacing:-.01em}
+.type{font-size:.82rem;color:var(--muted)}
+.asset p{margin:0 0 16px;color:var(--muted);font-size:.95rem;flex:1}
+.asset-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.85rem}
+.lic{background:var(--soft);border-radius:8px;padding:4px 10px;font-weight:600}
+.visit{font-weight:600;color:var(--accent)}
+.visit:hover{text-decoration:underline}
+.empty{grid-column:1/-1;text-align:center;padding:48px 16px;border:1.5px dashed var(--line);border-radius:20px;color:var(--muted)}
+
+.ad-slot{margin:8px auto;max-width:1120px;padding:14px;border:1.5px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted);font-size:.8rem}
+
+.cta-strip{margin:48px 0 24px;background:var(--ink);color:var(--bg);border-radius:28px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.cta-strip h2{max-width:20ch}
+.cta-strip p{margin:10px 0 0;opacity:.75;max-width:48ch}
+.cta-strip .btn-primary{background:var(--warm);color:#1b1205}
+
+.site-footer{border-top:1px solid var(--line);margin-top:40px;padding:32px 0}
+.site-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.92rem}
+.footer-links a:hover{color:var(--ink)}
+.footer-copy,.footer-tag{color:var(--muted);font-size:.88rem}
+
+@media (max-width:860px){
+.hero{padding:40px 0 24px}.hero-layout{grid-template-columns:1fr}.dial{max-width:300px;order:-1}
+.nav{display:none}.cta-strip{padding:28px}.header-actions .btn-secondary{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="#top"><span class="brand-mark">✦</span>CreatorVault</a>
+<nav class="nav" aria-label="Main"><a href="#top">Discover</a><a href="#library">Library</a><a href="#about">How it works</a></nav>
+<div class="header-actions"><a class="btn btn-primary" href="https://t.me/CreatorVaultAssetsBot" target="_blank" rel="noopener">Open Telegram bot</a></div>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap hero-layout">
+<div>
+<div class="pill-note"><span class="pulse"></span>Every listing links to its official source</div>
+<h1>Make your next idea look <span>extraordinary</span>.</h1>
+<p class="lede">Search music, sound effects, footage, photos, fonts, templates and AI tools. Open the official page and check the license before you use anything.</p>
+<form class="search" role="search" onsubmit="event.preventDefault();document.getElementById('library').scrollIntoView()">
+<label class="sr" for="q" style="position:absolute;left:-9999px">Search resources</label>
+<input id="q" type="search" placeholder="Try “lofi”, “font” or “footage”" autocomplete="off">
+<button class="btn btn-primary" type="submit">Search</button>
+</form>
+<div class="trust"><b id="resourceCount">0</b> listings in this demo. Terms change, so always confirm on the source.</div>
+</div>
+<div class="dial" aria-hidden="true">
+<svg viewBox="0 0 400 400" id="dialSvg"><circle class="ring" cx="200" cy="200" r="180"/><circle class="ring" cx="200" cy="200" r="120"/><g id="ticks"></g><g id="nodes"></g>
+<g class="needle" id="needle"><line x1="200" y1="200" x2="200" y2="40" stroke="var(--warm)" stroke-width="4" stroke-linecap="round"/></g>
+<circle class="hub" cx="200" cy="200" r="42"/><text class="hub-text" x="200" y="201">✦</text></svg>
+<div class="dial-label" id="dialLabel">All assets</div>
+</div>
+</div></section>
+
+<section class="section" id="library"><div class="wrap">
+<div class="section-heading"><div><h2>Your creative toolbox</h2><p class="sub">Pick a type or search above. Results update as you type.</p></div></div>
+<div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+<div class="asset-grid" id="grid" aria-live="polite"></div>
+</div></section>
+
+<div class="wrap"><div class="ad-slot">Advertisement space (optional)</div></div>
+
+<section class="section" id="about"><div class="wrap">
+<div class="cta-strip"><div><h2>Find it. Check the license. Create.</h2><p>CreatorVault is a starting point. Each card sends you to the provider so you always see the current terms.</p></div>
+<a class="btn btn-primary" href="https://t.me/CreatorVaultAssetsBot" target="_blank" rel="noopener">Find assets on Telegram</a></div>
+</div></section>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+<div><a class="brand" href="#top"><span class="brand-mark">✦</span>CreatorVault</a><div class="footer-tag" style="margin-top:8px">A curated starting point for creators.</div></div>
+<nav class="footer-links" aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclaimer.html">Disclaimer</a><a href="copyright.html">Copyright</a></nav>
+<div class="footer-copy">© 2026 CreatorVault</div>
+</div></footer>
+
+<script>
+var CATS=["Music","Sound FX","Footage","Photos","Fonts","Templates","AI tools"];
+var COLORS={"Music":"#5b3df5","Sound FX":"#e0457b","Footage":"#0c8f8f","Photos":"#d9731a","Fonts":"#2f5fd0","Templates":"#8a3fc4","AI tools":"#1b8a4b"};
+var ASSETS=[
+{n:"Pixabay Music",c:"Music",d:"Royalty-free tracks for videos and reels, searchable by mood and genre.",u:"https://pixabay.com/music/"},
+{n:"Free Music Archive",c:"Music",d:"Browse independent music with per-track license labels.",u:"https://freemusicarchive.org/"},
+{n:"Freesound",c:"Sound FX",d:"Community library of sound effects and field recordings.",u:"https://freesound.org/"},
+{n:"Mixkit",c:"Sound FX",d:"Free sound effects, music and video clips in one place.",u:"https://mixkit.co/"},
+{n:"Pexels Videos",c:"Footage",d:"Free stock video clips in HD and 4K for edits and b-roll.",u:"https://www.pexels.com/videos/"},
+{n:"Coverr",c:"Footage",d:"Short, clean stock clips that work well as backgrounds.",u:"https://coverr.co/"},
+{n:"Unsplash",c:"Photos",d:"High-quality photography for thumbnails, covers and designs.",u:"https://unsplash.com/"},
+{n:"Openverse",c:"Photos",d:"Search openly licensed images and audio across the web.",u:"https://openverse.org/"},
+{n:"Google Fonts",c:"Fonts",d:"Open-source font families you can preview and download.",u:"https://fonts.google.com/"},
+{n:"Fontshare",c:"Fonts",d:"Quality fonts from the Indian Type Foundry, free to use.",u:"https://www.fontshare.com/"},
+{n:"Canva Templates",c:"Templates",d:"Editable templates for posts, thumbnails, decks and more.",u:"https://www.canva.com/templates/"},
+{n:"Hugging Face",c:"AI tools",d:"Discover open AI models and demo apps for creative work.",u:"https://huggingface.co/"}
+];
+var state={cat:"All",q:""};
+var $=function(i){return document.getElementById(i)};
+
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function buildDial(){
+  var t="",n="",i,a,x,y,r=Math.PI/180;
+  for(i=0;i<60;i++){a=i*6*r;t+='<line class="tick" x1="'+(200+196*Math.sin(a))+'" y1="'+(200-196*Math.cos(a))+'" x2="'+(200+(i%5?190:184)*Math.sin(a))+'" y2="'+(200-(i%5?190:184)*Math.cos(a))+'"/>'}
+  $("ticks").innerHTML=t;
+  CATS.forEach(function(c,k){a=k*(360/CATS.length)*r;x=200+150*Math.sin(a);y=200-150*Math.cos(a);
+    n+='<circle class="node" data-c="'+c+'" cx="'+x+'" cy="'+y+'" r="11"/>'});
+  $("nodes").innerHTML=n;
+}
+function turnDial(){
+  var k=CATS.indexOf(state.cat),nodes=document.querySelectorAll(".node");
+  $("needle").style.transform="rotate("+(k<0?0:k*360/CATS.length)+"deg)";
+  nodes.forEach(function(el){el.classList.toggle("on",el.getAttribute("data-c")===state.cat)});
+  $("dialLabel").textContent=state.cat==="All"?"All assets":state.cat;
+}
+function buildChips(){
+  var h='',all=["All"].concat(CATS);
+  all.forEach(function(c){var cnt=c==="All"?ASSETS.length:ASSETS.filter(function(a){return a.c===c}).length;
+    h+='<button class="chip" type="button" data-c="'+c+'" aria-pressed="'+(c===state.cat)+'">'+c+'<small>'+cnt+'</small></button>'});
+  $("chips").innerHTML=h;
+}
+function render(){
+  var q=state.q.trim().toLowerCase();
+  var list=ASSETS.filter(function(a){
+    return (state.cat==="All"||a.c===state.cat)&&(!q||(a.n+" "+a.c+" "+a.d).toLowerCase().indexOf(q)>-1)});
+  $("grid").innerHTML=list.length?list.map(function(a){
+    return '<article class="asset"><div class="asset-top"><div class="glyph" style="background:'+COLORS[a.c]+'">'+esc(a.n.charAt(0))+'</div><div><h3>'+esc(a.n)+'</h3><div class="type">'+esc(a.c)+'</div></div></div><p>'+esc(a.d)+'</p><div class="asset-foot"><span class="lic">Check license</span><a class="visit" href="'+a.u+'" target="_blank" rel="noopener">Visit source ↗</a></div></article>'
+  }).join(""):'<div class="empty">No matches for “'+esc(state.q)+'”. Try a broader word like “music” or “font”.</div>';
+  document.querySelectorAll(".chip").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-c")===state.cat)});
+  turnDial();
+}
+$("chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;state.cat=b.getAttribute("data-c");render()});
+$("q").addEventListener("input",function(e){state.q=e.target.value;render()});
+$("resourceCount").textContent=ASSETS.length;
+buildDial();buildChips();render();
+</script>
+</body>
+</html>
